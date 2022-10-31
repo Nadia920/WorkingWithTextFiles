@@ -12,7 +12,7 @@ public class ShowTextFiles {
         File file_full_inf = new File(filePath);
         FileWriter fullFiles = new FileWriter(filePath, true);
         BufferedWriter bufferWriter = new BufferedWriter(fullFiles);
-        for (File file : files) {
+        /*for (File file : files) {
             if (file.isDirectory()) {
                 showFiles(file.listFiles()); // Calls same method again.
             } else {
@@ -30,8 +30,8 @@ public class ShowTextFiles {
                     }
                 }
 
-               /* IOCopier.joinFiles(bufferWriter, file)*/
+               *//* IOCopier.joinFiles(bufferWriter, file)*//*
             }
-        }
+        }*/
     }
 }

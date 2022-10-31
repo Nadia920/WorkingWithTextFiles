@@ -16,7 +16,7 @@ public class Main {
         FillingFilesWithData filling_files = new FillingFilesWithData();
         filling_files.addingDataToFiles();
         System.out.println("Функция отработала");
-        File dir = new File("C:/Users/kabak/OneDrive/Документы/Test tasks RPA - B1/Task1/Files");
+        File dir = new File("D:/Test tasks RPA - B1/Task1/Files");
         stf.showFiles(dir.listFiles());
 
     }
