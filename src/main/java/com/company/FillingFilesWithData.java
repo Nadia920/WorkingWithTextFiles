@@ -34,7 +34,7 @@ public class FillingFilesWithData {
                                         final int decimalPlaces) {
 
         if (lowerBound < 0 || upperBound <= lowerBound || decimalPlaces < 0) {
-            throw new IllegalArgumentException("Put error message here");
+            throw new IllegalArgumentException("Error");
         }
 
         final double dbl =
@@ -45,9 +45,6 @@ public class FillingFilesWithData {
 
     }
 
-    public static int randBetween(int start, int end) {
-        return start + (int) Math.round(Math.random() * (end - start));
-    }
 
     public void addingDataToFiles() {
 
@@ -100,23 +97,9 @@ public class FillingFilesWithData {
                     fileWriter.write(separator);
                     fileWriter.write("\n");
 
-
-//
-//                    final Random rnd = new Random();
-//                    bufferWriter.write(getRandomValue(rnd, 1, 20, 8));
-//                    bufferWriter.write(separator);
-//
-//                }
-//                System.out.println("Внутренний цикл отработал");
-//                bufferWriter.flush();
-//                bufferWriter.close();
-//                writer.close();
-
-
                 }
                 fileWriter.flush();
                 fileWriter.close();
-                System.out.println("Внешний цикл отработал");
             } catch (IOException e) {
                 e.printStackTrace();
             }

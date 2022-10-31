@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class StockExchangeDB {
-    public  static final String DB_URL = "jdbc:h2:/C:/Users/kabak/OneDrive/Документы/Test tasks RPA - B1/Task1/Program/db/stockExchange";
+    public  static final String DB_URL = "jdbc:h2:/D:/Test tasks RPA - B1/Task1/WorkingWithTextFiles/db/stockExchange";
     public  static final String DB_Driver = "org.h2.Driver";
     public void connectWithBD() {
         try{
