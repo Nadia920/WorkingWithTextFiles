@@ -13,27 +13,20 @@ import java.util.stream.Collectors;
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 public class FillingFilesWithData {
-    public static <T> List<T> getRandomElement(List<T> list, int n) {
-        if (n > list.size()) {
-            throw new IndexOutOfBoundsException();
-        }
-        List<T> copy = new ArrayList<>(list);
-        Collections.shuffle(copy);
-        return copy.subList(0, n);
-    }
+
     public static String rendi (String a, int n){
         List<Character> list = new ArrayList<>();
         Random random = new Random();
-        final int randomInt = random.nextInt(0, a.length());
-/*        final int randomInt = random.nextInt(0, a.length()) % 25;*/
-        System.out.println("индекс" + randomInt);
         for(int i=0; i<n ;i++){
+            int randomInt = random.nextInt(0, a.length());
             char c = a.charAt(randomInt);
             list.add(c);
         }
-        String a1 = String.valueOf(list);
-        System.out.println(a1);
-        return String.valueOf(list);
+        String letters = list.toString()
+                .substring(1, 3 * list.size() - 1)
+                .replaceAll(", ", "");
+        System.out.println("строчка символов " + letters);
+        return letters;
     }
     public static String getRandomValue(final Random random,
                                         final int lowerBound,
@@ -59,11 +52,12 @@ public class FillingFilesWithData {
     public void addingDataToFiles() {
 
         String separator = "||";
-        String Eng = "^[a-zA-Z]";
-        String Rus = "^[а-яА-Я]";
-        List<Character> alphabetEng = Eng.chars().mapToObj(character -> (char) character).collect(Collectors.toList());
-        List<Character> alphabetRus = Rus.chars().mapToObj(character -> (char) character).collect(Collectors.toList());
-        String dist = "abc...xyz";
+        /*String Eng = "^[a-zA-Z]";
+        String Rus = "^[а-яА-Я]";*/
+       /* List<Character> alphabetEng = Eng.chars().mapToObj(character -> (char) character).collect(Collectors.toList());
+        List<Character> alphabetRus = Rus.chars().mapToObj(character -> (char) character).collect(Collectors.toList());*/
+        String eng = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" ;
+        String rus = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
         for (int i = 1; i <= 3; i++) {
             System.out.println("Зашли в внешний цикл");
             try {
@@ -72,16 +66,7 @@ public class FillingFilesWithData {
 
             /* fileWriter.flush();*/
                 for (int j = 1; j <= 3; j++) {
-                    /*String date = randBetween()
-                    System.out.println("Зашли в внутренний цикл");
-                    GregorianCalendar gc = new GregorianCalendar();
-                    int year = randBetween(2017, 2022);
-                    gc.set(gc.YEAR, year);
-                    int m = randBetween(1, gc.getActualMaximum((gc.MONTH) + 1));
-                    gc.set((gc.MONTH) + 1, m);
-                    int dayOfYear = randBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
-                    gc.set(gc.DAY_OF_YEAR, dayOfYear);
-                    String a = Integer.toString((gc.get(gc.MONTH) + 1));*/
+
                     LocalDate startDate = LocalDate.of(2017, 1, 1); //start date
                     long start = startDate.toEpochDay();
                     System.out.println(start);
@@ -101,42 +86,22 @@ public class FillingFilesWithData {
                     System.out.println(day);
                     fileWriter.write(day + "." +  month + "." + year);
                     fileWriter.write(separator);
-                    String randomEng = rendi(dist, 10);
+                    String randomEng = rendi(eng, 10);
                     fileWriter.write(randomEng);
+                    fileWriter.write(separator);
+                    String randomRus = rendi(rus, 10);
+                    fileWriter.write(randomRus);
+                    fileWriter.write(separator);
+                    String randomNum = Integer.toString(ThreadLocalRandom.current().nextInt(1, 100000000));
+                    fileWriter.write(randomNum);
+                    fileWriter.write(separator);
+                    Random rnd = new Random();
+                    fileWriter.write(getRandomValue(rnd, 1, 20, 8));
+                    fileWriter.write(separator);
                     fileWriter.write("\n");
-                    List<Integer> l = new ArrayList<>();
 
-                    String Eng1 = "\\^[a-z]";
 
-                   // fileWriter.write("231232");
-
-//                    bufferWriter.write(day + "." + month +  "." + year);
-////                    char[] month = a.toCharArray();
-////                    char[] str = new char[2];
-////                    for(int k=0; k<2; k++){
-////                        str[k] = month[k];
-////                        System.out.println(str[k]);
-////                    }
-//                   /* if(a.length() == 1) {
-//                        a = '0' + a;
-//                        System.out.println("авыаыв");
-////                        System.out.println(str [0]);
-////                        System.out.println(month [1]);
-//                    }
-//                    String monthStr = a;
-//                    System.out.println(gc.get(gc.DAY_OF_MONTH) + "." + monthStr + "." + gc.get(gc.YEAR));
-//                    bufferWriter.write("111");
-//                    bufferWriter.write(gc.get(gc.YEAR) + "." + (gc.get(gc.MONTH) + 1) + "." + gc.get(gc.DAY_OF_MONTH));*/
-//                    bufferWriter.write(separator);
-//                    List<Character> randomEng = getRandomElement(alphabetEng, 10);
-//                    bufferWriter.write(String.valueOf(randomEng));
-//                    bufferWriter.write(separator);
-//                    List<Character> randomRus = getRandomElement(alphabetRus, 10);
-//                    bufferWriter.write(String.valueOf(randomRus));
-//                    bufferWriter.write(separator);
-//                    int randomNum = ThreadLocalRandom.current().nextInt(1, 100000000 + 1);
-//                    bufferWriter.write(randomNum);
-//                    bufferWriter.write(separator);
+//
 //                    final Random rnd = new Random();
 //                    bufferWriter.write(getRandomValue(rnd, 1, 20, 8));
 //                    bufferWriter.write(separator);
