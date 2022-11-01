@@ -1,13 +1,12 @@
 package com.company;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class ShowTextFiles {
-    public void showFiles(File[] files) throws IOException {
+    public void showFiles(File[] files) throws IOException { //Функция по выбору желаемого варианта записи в общий файл
         String filePath = "D:/Test tasks RPA - B1/Task1/Files/Full_file.txt";
         File fileSource = new File(filePath);
         FileWriter fullFiles = new FileWriter(filePath, true);
@@ -23,11 +22,9 @@ public class ShowTextFiles {
                         if (file.isDirectory()) {
                             showFiles(file.listFiles()); // Calls same method again.
                         } else {
-                         /*   IOCopier.joinFilesWithDelete(fullFiles, files, str);*/
-                            IOCopier.joinFilesWithDelete(fileSource, files, str);
+                           IOCopier.joinFilesWithDelete(fileSource, files, str, file);
                         }
                     }
-                    System.out.println("Запись данных завершена");
                     break;
                 }
                 case 2: {
@@ -35,7 +32,6 @@ public class ShowTextFiles {
                         if (file.isDirectory()) {
                             showFiles(file.listFiles()); // Calls same method again.
                         } else {
-                            /*IOCopier.joinFilesWithoutDelete(fullFiles, files);*/
                             IOCopier.joinFilesWithoutDelete(fileSource, files);
                         }
                     }

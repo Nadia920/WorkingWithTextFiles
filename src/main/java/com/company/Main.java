@@ -1,18 +1,13 @@
 package com.company;
 
-        import com.company.model.TextFiles;
 
-        import java.io.*;
-        import java.util.*;
-        import java.util.concurrent.ThreadLocalRandom;
-
-        import com.company.ShowTextFiles;
+import java.io.*;
+import java.sql.SQLException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
         ShowTextFiles stf = new ShowTextFiles();
-        Map<Long, TextFiles> textfiles = new HashMap<>();
         FillingFilesWithData filling_files = new FillingFilesWithData();
         filling_files.addingDataToFiles();
         File dir = new File("D:/Test tasks RPA - B1/Task1/Files");

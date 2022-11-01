@@ -1,20 +1,14 @@
 package com.company;
 
-import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
-import static org.springframework.util.ObjectUtils.isEmpty;
+public class FillingFilesWithData {//Заполнение файла данными
 
-public class FillingFilesWithData {
-
-    public static String rendi (String a, int n){
+    public static String rendi (String a, int n){//Получение определённого количества символов из строки
         List<Character> list = new ArrayList<>();
         Random random = new Random();
         for(int i=0; i<n ;i++){
@@ -25,10 +19,9 @@ public class FillingFilesWithData {
         String letters = list.toString()
                 .substring(1, 3 * list.size() - 1)
                 .replaceAll(", ", "");
-        System.out.println("строчка символов " + letters);
         return letters;
     }
-    public static String getRandomValue(final Random random,
+    public static String getRandomValue(final Random random, //Получение рандомное число
                                         final int lowerBound,
                                         final int upperBound,
                                         final int decimalPlaces) {
@@ -49,38 +42,25 @@ public class FillingFilesWithData {
     public void addingDataToFiles() {
 
         String separator = "||";
-        /*String Eng = "^[a-zA-Z]";
-        String Rus = "^[а-яА-Я]";*/
-       /* List<Character> alphabetEng = Eng.chars().mapToObj(character -> (char) character).collect(Collectors.toList());
-        List<Character> alphabetRus = Rus.chars().mapToObj(character -> (char) character).collect(Collectors.toList());*/
         String eng = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" ;
         String rus = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-        for (int i = 1; i <= 3; i++) {
-            System.out.println("Зашли в внешний цикл");
+        for (int i = 1; i <= 100; i++) {
             try {
                 String filePath = "D:/Test tasks RPA - B1/Task1/Files/File_" + i + ".txt";
                 FileWriter fileWriter = new FileWriter(filePath, true);
-
-            /* fileWriter.flush();*/
-                for (int j = 1; j <= 3; j++) {
+                for (int j = 1; j <= 100; j++) {
 
                     LocalDate startDate = LocalDate.of(2017, 1, 1); //start date
                     long start = startDate.toEpochDay();
-                    System.out.println(start);
 
                     LocalDate endDate = LocalDate.now(); //end date
                     long end = endDate.toEpochDay();
-                    System.out.println(start);
 
                     long randomEpochDay = ThreadLocalRandom.current().longs(start, end).findAny().getAsLong();
-                    System.out.println(LocalDate.ofEpochDay(randomEpochDay));
                     String date = String.valueOf(LocalDate.ofEpochDay(randomEpochDay));
                     String year = date.substring(0, 4);
-                    System.out.println(year);
                     String month = date.substring(5, 7);
-                    System.out.println(month);
                     String day = date.substring(8, 10);
-                    System.out.println(day);
                     fileWriter.write(day + "." +  month + "." + year);
                     fileWriter.write(separator);
                     String randomEng = rendi(eng, 10);
