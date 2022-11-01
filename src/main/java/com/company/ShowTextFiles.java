@@ -1,8 +1,6 @@
 package com.company;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class ShowTextFiles {
@@ -12,12 +10,13 @@ public class ShowTextFiles {
         FileWriter fullFiles = new FileWriter(filePath, true);
         System.out.println("Хотите удалить какие - то строки из файлов? \n 1 - Да \n 2 - Нет");
         Scanner in = new Scanner(System.in);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int chooseDelete = in.nextInt();
         if (chooseDelete == 1 || chooseDelete == 2) {
             switch (chooseDelete) {
                 case 1: {
                     System.out.println("Введите строку, которую хотите удалить");
-                    String str = in.nextLine();
+                    String str = reader.readLine();
                     for (File file : files) {
                         if (file.isDirectory()) {
                             showFiles(file.listFiles()); // Calls same method again.
